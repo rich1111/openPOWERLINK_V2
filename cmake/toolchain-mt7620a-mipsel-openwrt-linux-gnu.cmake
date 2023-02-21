@@ -45,9 +45,9 @@ SET(CMAKE_C_COMPILER ${MAKE_CROSS_COMPILE}gcc)
 SET(CMAKE_CXX_COMPILER ${MAKE_CROSS_COMPILE}g++)
 SET(CMAKE_ASM-ATT_COMPILER ${MAKE_CROSS_COMPILE}as)
 
-SET(CMAKE_FIND_ROOT_PATH ${MT7620A_SDK_DIR}/toolchain-mipsel_24kc_gcc-8.4.0_glibc/lib/libc)
+SET(CMAKE_FIND_ROOT_PATH ${MT7620A_SDK_DIR}/toolchain-mipsel_24kc_gcc-8.4.0_glibc;${MT7620A_SDK_DIR}/target-mipsel_24kc_glibc)
 # search for programs in the build host directories
-SET(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+SET(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM ONLY)
 # for libraries in the target and build host directories
 SET(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY BOTH)
 # for headers in the target directories

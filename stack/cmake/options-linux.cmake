@@ -56,7 +56,7 @@ OPTION (CFG_COMPILE_LIB_CN_SIM                  "Compile openPOWERLINK CN librar
 ################################################################################
 # Options for shared libraries
 
-OPTION (CFG_COMPILE_SHARED_LIBRARY              "Build openPOWERLINK library as shared library" OFF)
+OPTION (CFG_COMPILE_SHARED_LIBRARY              "Build openPOWERLINK library as shared library" ON)
 
 ################################################################################
 # Options for library features
