@@ -113,8 +113,8 @@ int main(int argc, char* argv[])
      * that they are able to wait on them using sigwaitinfo!
      */
     sigemptyset(&mask);
-    sigaddset(&mask, SIGRTMIN);
-    sigaddset(&mask, SIGRTMIN + 1);
+    sigaddset(&mask, SIGRTMIN + 2);
+    sigaddset(&mask, SIGRTMIN + 3);
     pthread_sigmask(SIG_BLOCK, &mask, NULL);
 #endif
 

@@ -274,7 +274,7 @@ tOplkError timeru_setTimer(tTimerHdl* pTimerHdl_p,
     addTimer(pData);
 
     sev.sigev_notify = SIGEV_SIGNAL;
-    sev.sigev_signo = SIGRTMIN;
+    sev.sigev_signo = SIGRTMIN + 2;
     sev.sigev_value.sival_ptr = pData;
     if (timer_create(CLOCK_MONOTONIC, &sev, &pData->timer) == -1)
     {
@@ -479,7 +479,7 @@ static void* processThread(void* pArgument_p)
     DEBUG_LVL_TIMERU_TRACE("%s() ThreadId:%d\n", __func__, syscall(SYS_gettid));
 
     sigemptyset(&awaitedSignal);
-    sigaddset(&awaitedSignal, SIGRTMIN);
+    sigaddset(&awaitedSignal, SIGRTMIN + 2);
     pthread_sigmask(SIG_BLOCK, &awaitedSignal, NULL);
 
     /* loop forever until thread will be canceled */

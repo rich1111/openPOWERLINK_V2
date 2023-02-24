@@ -62,7 +62,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define TIMER_MIN_VAL_SINGLE    20000       ///< minimum timer interval for single timeouts
 #define TIMER_MIN_VAL_CYCLE     100000      ///< minimum timer interval for continuous timeouts
 
-#define SIGHIGHRES              SIGRTMIN + 1
+#define SIGHIGHRES              SIGRTMIN + 3
 
 /* macros for timer handles */
 #define TIMERHDL_MASK           0x0FFFFFFF
