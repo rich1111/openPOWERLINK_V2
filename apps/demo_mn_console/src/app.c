@@ -62,7 +62,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //------------------------------------------------------------------------------
 #define DEFAULT_MAX_CYCLE_COUNT 20      // 6 is very fast
 #define APP_LED_COUNT_1         8       // number of LEDs for CN1
+#define APP_LED_COUNT_2         16       // number of LEDs for CN33
 #define APP_LED_MASK_1          (1 << (APP_LED_COUNT_1 - 1))
+#define APP_LED_MASK_2          (1 << (APP_LED_COUNT_2 - 1))
 #define MAX_NODES               255
 
 //------------------------------------------------------------------------------
@@ -196,35 +198,38 @@ tOplkError processSync(void)
 
     cnt_l++;
 
+    // for 8DI8DO CN1
     aNodeVar_l[0].input = pProcessImageOut_l->CN1_DigitalInput_00h_AU8_DigitalInput;
-    aNodeVar_l[1].input = pProcessImageOut_l->CN32_DigitalInput_00h_AU8_DigitalInput;
-    aNodeVar_l[2].input = pProcessImageOut_l->CN110_DigitalInput_00h_AU8_DigitalInput;
+    // for 16DO CN33
+    aNodeVar_l[1].input = 0;
+    // for 16DI CN110
+    aNodeVar_l[2].input = (pProcessImageOut_l->CN110_DigitalInput_00h_AU8_DigitalInput_2 << 8) +
+            pProcessImageOut_l->CN110_DigitalInput_00h_AU8_DigitalInput_1;
 
     for (i = 0; (i < MAX_NODES) && (aUsedNodeIds_l[i] != 0); i++)
     {
         /* Running LEDs */
         /* period for LED flashing determined by inputs */
-        aNodeVar_l[i].period = (aNodeVar_l[i].input == 0) ? 1 : (aNodeVar_l[i].input * 20);
+        aNodeVar_l[i].period = 10/*(aNodeVar_l[i].input == 0) ? 1 : (aNodeVar_l[i].input * 20)*/;
         if (cnt_l % aNodeVar_l[i].period == 0)
         {
-            if (aNodeVar_l[i].leds == 0x00)
+            if (i < 2)  // for only CN1, CN33
             {
-                aNodeVar_l[i].leds = 0x1;
-                aNodeVar_l[i].toggle = 1;
-            }
-            else
-            {
-                if (aNodeVar_l[i].toggle)
-                {
-                    aNodeVar_l[i].leds <<= 1;
-                    if (aNodeVar_l[i].leds == APP_LED_MASK_1)
-                        aNodeVar_l[i].toggle = 0;
-                }
-                else
-                {
-                    aNodeVar_l[i].leds >>= 1;
-                    if (aNodeVar_l[i].leds == 0x01)
-                        aNodeVar_l[i].toggle = 1;
+                if (aNodeVar_l[i].leds == 0x00) {
+                    aNodeVar_l[i].leds = 0x1;
+                    aNodeVar_l[i].toggle = 1;
+                } else {
+                    if (aNodeVar_l[i].toggle) {
+                        aNodeVar_l[i].leds <<= 1;
+                        if (aNodeVar_l[0].leds == APP_LED_MASK_1)
+                            aNodeVar_l[0].toggle = 0;
+                        if (aNodeVar_l[1].leds == APP_LED_MASK_2)
+                            aNodeVar_l[1].toggle = 0;
+                    } else {
+                        aNodeVar_l[i].leds >>= 1;
+                        if (aNodeVar_l[i].leds == 0x01)
+                            aNodeVar_l[i].toggle = 1;
+                    }
                 }
             }
         }
@@ -237,8 +242,8 @@ tOplkError processSync(void)
     }
 
     pProcessImageIn_l->CN1_DigitalOutput_00h_AU8_DigitalOutput = aNodeVar_l[0].leds;
-    pProcessImageIn_l->CN32_DigitalOutput_00h_AU8_DigitalOutput = aNodeVar_l[1].leds;
-    pProcessImageIn_l->CN110_DigitalOutput_00h_AU8_DigitalOutput = aNodeVar_l[2].leds;
+    pProcessImageIn_l->CN32_DigitalOutput_00h_AU8_DigitalOutput_1 = aNodeVar_l[1].leds & 0x00FF;
+    pProcessImageIn_l->CN32_DigitalOutput_00h_AU8_DigitalOutput_2 = aNodeVar_l[1].leds >> 8;
 
     ret = oplk_exchangeProcessImageIn();
 

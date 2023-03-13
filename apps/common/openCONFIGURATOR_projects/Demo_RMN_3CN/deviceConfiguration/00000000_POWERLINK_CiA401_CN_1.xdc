@@ -72,7 +72,7 @@
         <ProfileTechnology>Powerlink</ProfileTechnology>
       </ISO15745Reference>
     </ProfileHeader>
-    <ProfileBody xsi:type="ProfileBody_Device_Powerlink" fileName="00000000_POWERLINK_CiA401.xdd" fileCreator="B&amp;R Industrial Automation GmbH" fileCreationDate="2011-04-01" fileCreationTime="10:00:00+02:00" fileModificationDate="2018-09-06" fileModificationTime="14:40:29+05:30" fileModifiedBy="Priyadharshini" fileVersion="01.00" supportedLanguages="en">
+    <ProfileBody xsi:type="ProfileBody_Device_Powerlink" fileName="00000000_POWERLINK_CiA401.xdd" fileCreator="B&amp;R Industrial Automation GmbH" fileCreationDate="2011-04-01" fileCreationTime="10:00:00+02:00" fileModificationDate="2023-03-09" fileModificationTime="14:56:51+08:00" fileModifiedBy="irich678" fileVersion="01.00" supportedLanguages="en">
       <DeviceIdentity>
         <vendorName>Unknown vendor</vendorName>
         <vendorID>0x00000000</vendorID>
@@ -126,7 +126,7 @@
         <ProfileTechnology>Powerlink</ProfileTechnology>
       </ISO15745Reference>
     </ProfileHeader>
-    <ProfileBody xsi:type="ProfileBody_CommunicationNetwork_Powerlink" fileName="00000000_POWERLINK_CiA401.xdd" fileCreator="B&amp;R Industrial Automation GmbH" fileCreationDate="2011-04-01" fileCreationTime="10:00:00+02:00" fileModificationDate="2018-09-06" fileModificationTime="14:40:29+05:30" fileModifiedBy="Priyadharshini" fileVersion="01.00" supportedLanguages="en">
+    <ProfileBody xsi:type="ProfileBody_CommunicationNetwork_Powerlink" fileName="00000000_POWERLINK_CiA401.xdd" fileCreator="B&amp;R Industrial Automation GmbH" fileCreationDate="2011-04-01" fileCreationTime="10:00:00+02:00" fileModificationDate="2023-03-09" fileModificationTime="14:56:51+08:00" fileModifiedBy="irich678" fileVersion="01.00" supportedLanguages="en">
       <ApplicationLayers>
         <identity>
           <vendorID>0x00000000</vendorID>
@@ -234,8 +234,8 @@
           </Object>
           <Object index="1020" name="CFM_VerifyConfiguration_REC" objectType="9">
             <SubObject subIndex="00" name="NumberOfEntries" objectType="7" dataType="0005" accessType="const" defaultValue="2" />
-            <SubObject subIndex="01" name="ConfDate_U32" objectType="7" dataType="0007" accessType="rw" defaultValue="0" actualValue="0x0000317B" />
-            <SubObject subIndex="02" name="ConfTime_U32" objectType="7" dataType="0007" accessType="rw" defaultValue="0" actualValue="0x032614BC" />
+            <SubObject subIndex="01" name="ConfDate_U32" objectType="7" dataType="0007" accessType="rw" defaultValue="0" actualValue="0x000037E8" />
+            <SubObject subIndex="02" name="ConfTime_U32" objectType="7" dataType="0007" accessType="rw" defaultValue="0" actualValue="0x033507DF" />
           </Object>
           <Object index="1030" name="NMT_InterfaceGroup_0h_REC" objectType="9">
             <SubObject subIndex="00" name="NumberOfEntries" objectType="7" dataType="0005" accessType="const" PDOmapping="no" defaultValue="9" />
